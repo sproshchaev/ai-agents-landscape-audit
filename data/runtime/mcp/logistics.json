@@ -6,7 +6,8 @@
       "purpose": "планирование отгрузок",
       "capability": "CAP-06",
       "account": "user:logistics-11",
-      "owner": "руководитель команды logistics",
+      "business_owner": "Директор по логистике",
+      "technical_owner": "руководитель команды logistics",
       "servers": [
         {
           "name": "fleet",
@@ -23,6 +24,7 @@
       "purpose": "планирование отгрузок",
       "capability": "CAP-06",
       "account": "user:logistics-24",
+      "technical_owner": "руководитель команды logistics",
       "servers": [
         {
           "name": "fleet",
@@ -35,7 +37,8 @@
       "purpose": "планирование отгрузок",
       "capability": "CAP-06",
       "account": "user:logistics-20",
-      "owner": "руководитель команды logistics",
+      "business_owner": "Директор по логистике",
+      "technical_owner": "руководитель команды logistics",
       "servers": [
         {
           "name": "tms",

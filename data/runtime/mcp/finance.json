@@ -6,7 +6,8 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "user:finance-90",
-      "owner": "руководитель команды finance",
+      "business_owner": "Директор по данным",
+      "technical_owner": "руководитель команды finance",
       "servers": [
         {
           "name": "bi",
@@ -23,6 +24,7 @@
       "purpose": "сверка счетов",
       "capability": "CAP-03",
       "account": "svc:agt-finance-02",
+      "technical_owner": "руководитель команды finance",
       "servers": [
         {
           "name": "erp-finance",
@@ -43,7 +45,8 @@
       "purpose": "сверка счетов",
       "capability": "CAP-03",
       "account": "svc:agt-finance-03",
-      "owner": "руководитель команды finance",
+      "business_owner": "Финансовый директор",
+      "technical_owner": "руководитель команды finance",
       "servers": [
         {
           "name": "erp-finance",
@@ -56,6 +59,7 @@
       "purpose": "сверка счетов",
       "capability": "CAP-03",
       "account": "svc:agt-finance-04",
+      "technical_owner": "руководитель команды finance",
       "servers": [
         {
           "name": "erp-finance",

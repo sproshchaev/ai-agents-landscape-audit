@@ -19,11 +19,12 @@ ACCOUNTS = {"svc:agt-sales-01": {"kind": "service", "enabled": "yes"},
 GW = "https://api-gw.corp.local/crm/mcp"
 
 
-def run(servers=None, account="svc:agt-sales-01", log_account=None, last_call="2026-10-30"):
+def run(servers=None, account="svc:agt-sales-01", log_account=None, last_call="2026-10-30",
+        **fields):
     mcp = [{"team": "sales", "agents": [{"key": "agt-sales-01", "capability": "CAP-02",
                                          "account": account,
                                          "servers": [{"name": "crm", "url": GW}]
-                                         if servers is None else servers}]}]
+                                         if servers is None else servers, **fields}]}]
     log = [{"date": last_call, "account": log_account or account, "agent": "agt-sales-01"}]
     agents = discover(mcp, log)
     audit(REPOSITORY, agents, ACCOUNTS)
@@ -61,6 +62,19 @@ class AuditEdgeCases(unittest.TestCase):
 
     def test_gateway_url_is_not_direct(self):
         self.assertFalse(run()[4])
+
+    def test_stdio_server_is_skipped_not_crash(self):
+        self.assertFalse(run(servers=[{"name": "local", "command": "mcp-files"}])[4])
+
+    def test_remote_server_without_url_is_direct(self):
+        self.assertTrue(run(servers=[{"name": "crm", "url": ""}])[4])
+
+    def test_technical_owner_is_not_business_owner(self):
+        self.assertTrue(run(technical_owner="руководитель команды sales")[2])
+
+    def test_business_owner_from_mcp_config_counts(self):
+        self.assertFalse(run(business_owner="Директор по продажам",
+                             technical_owner="руководитель команды sales")[2])
 
     def test_gateway_host_on_other_port_is_direct(self):
         self.assertTrue(run(servers=[{"name": "crm",

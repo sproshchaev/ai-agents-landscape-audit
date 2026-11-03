@@ -6,6 +6,7 @@
       "purpose": "ответы клиентам",
       "capability": "CAP-01",
       "account": "user:support-30",
+      "technical_owner": "руководитель команды support",
       "servers": [
         {
           "name": "claims",
@@ -22,6 +23,7 @@
       "purpose": "ответы клиентам",
       "capability": "CAP-01",
       "account": "svc:agt-support-03",
+      "technical_owner": "руководитель команды support",
       "servers": [
         {
           "name": "contact-center",
@@ -34,6 +36,7 @@
       "purpose": "поиск по базе знаний",
       "capability": "CAP-11",
       "account": "svc:agt-support-04",
+      "technical_owner": "руководитель команды support",
       "servers": [
         {
           "name": "mail",
@@ -50,7 +53,8 @@
       "purpose": "поиск по базе знаний",
       "capability": "CAP-11",
       "account": "user:support-32",
-      "owner": "руководитель команды support",
+      "business_owner": "Руководитель офиса цифровой трансформации",
+      "technical_owner": "руководитель команды support",
       "servers": [
         {
           "name": "mail",
@@ -67,6 +71,7 @@
       "purpose": "ответы клиентам",
       "capability": "CAP-01",
       "account": "svc:agt-support-06",
+      "technical_owner": "руководитель команды support",
       "servers": [
         {
           "name": "claims",

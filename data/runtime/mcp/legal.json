@@ -6,6 +6,7 @@
       "purpose": "проверка договоров",
       "capability": "CAP-08",
       "account": "svc:agt-legal-01",
+      "technical_owner": "руководитель команды legal",
       "servers": [
         {
           "name": "contracts",
@@ -22,7 +23,8 @@
       "purpose": "проверка договоров",
       "capability": "CAP-08",
       "account": "svc:agt-legal-02",
-      "owner": "руководитель команды legal",
+      "business_owner": "Директор по правовым вопросам",
+      "technical_owner": "руководитель команды legal",
       "servers": [
         {
           "name": "contracts",

@@ -92,9 +92,11 @@ TEAMS = [
     ("itops", 3, ["CAP-09", "CAP-11"]),
 ]
 
-# какие системы агент каждой возможности дёргает инструментами
-TOOLS_BY_CAPABILITY = {}
-for app_id, _, cap, _ in APPLICATIONS:
+# бизнес-владелец возможности (владелец первого её приложения: отвечает за результат,
+# а не за код агента) и системы, которые агенты этой возможности дёргают инструментами
+OWNER_BY_CAPABILITY, TOOLS_BY_CAPABILITY = {}, {}
+for app_id, _, cap, owner in APPLICATIONS:
+    OWNER_BY_CAPABILITY.setdefault(cap, owner)
     TOOLS_BY_CAPABILITY.setdefault(cap, []).append(app_id)
 
 PURPOSES = {
@@ -152,7 +154,7 @@ def build(rng):
                 cap, owner = registered[key], None
             else:
                 cap = rng.choice(caps)
-                owner = "руководитель команды " + team if rng.random() < 0.4 else None
+                owner = OWNER_BY_CAPABILITY[cap] if rng.random() < 0.4 else None
             human = rng.random() < 0.35
             account = f"user:{team}-{rng.randint(10, 99)}" if human else f"svc:{key}"
             # аргумент setdefault считается и для уже известной учётки: он тратит вызовы rng,
@@ -186,7 +188,9 @@ def build(rng):
                 servers.append({"name": app_id, "url": url})
             agent = {"key": key, "purpose": PURPOSES[cap], "capability": cap, "account": account}
             if owner:
-                agent["owner"] = owner
+                agent["business_owner"] = owner
+            # технический владелец есть всегда, бизнес-владельцем он от этого не становится
+            agent["technical_owner"] = "руководитель команды " + team
             agent["servers"] = servers
             agents.append(agent)
         mcp[team] = {"team": team, "agents": agents}

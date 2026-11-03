@@ -6,6 +6,7 @@
       "purpose": "разбор инцидентов",
       "capability": "CAP-09",
       "account": "user:itops-76",
+      "technical_owner": "руководитель команды itops",
       "servers": [
         {
           "name": "cmdb",
@@ -26,7 +27,8 @@
       "purpose": "поиск по базе знаний",
       "capability": "CAP-11",
       "account": "user:itops-23",
-      "owner": "руководитель команды itops",
+      "business_owner": "Руководитель офиса цифровой трансформации",
+      "technical_owner": "руководитель команды itops",
       "servers": [
         {
           "name": "wiki",
@@ -39,6 +41,7 @@
       "purpose": "поиск по базе знаний",
       "capability": "CAP-11",
       "account": "user:itops-54",
+      "technical_owner": "руководитель команды itops",
       "servers": [
         {
           "name": "wiki",

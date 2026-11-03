@@ -6,6 +6,7 @@
       "purpose": "разбор заявок на закупку",
       "capability": "CAP-04",
       "account": "svc:agt-procurement-01",
+      "technical_owner": "руководитель команды procurement",
       "servers": [
         {
           "name": "erp-procurement",
@@ -22,7 +23,8 @@
       "purpose": "проверка договоров",
       "capability": "CAP-08",
       "account": "svc:agt-procurement-02",
-      "owner": "руководитель команды procurement",
+      "business_owner": "Директор по правовым вопросам",
+      "technical_owner": "руководитель команды procurement",
       "servers": [
         {
           "name": "contracts",
@@ -35,6 +37,7 @@
       "purpose": "проверка договоров",
       "capability": "CAP-08",
       "account": "user:procurement-64",
+      "technical_owner": "руководитель команды procurement",
       "servers": [
         {
           "name": "contracts",

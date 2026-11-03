@@ -6,6 +6,7 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "svc:agt-marketing-01",
+      "technical_owner": "руководитель команды marketing",
       "servers": [
         {
           "name": "bi",
@@ -22,7 +23,8 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "svc:agt-marketing-02",
-      "owner": "руководитель команды marketing",
+      "business_owner": "Директор по данным",
+      "technical_owner": "руководитель команды marketing",
       "servers": [
         {
           "name": "dwh",
@@ -35,6 +37,7 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "user:marketing-61",
+      "technical_owner": "руководитель команды marketing",
       "servers": [
         {
           "name": "bi",
@@ -51,6 +54,7 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "svc:agt-marketing-04",
+      "technical_owner": "руководитель команды marketing",
       "servers": [
         {
           "name": "dwh",

@@ -6,6 +6,7 @@
       "purpose": "подготовка коммерческих предложений",
       "capability": "CAP-02",
       "account": "svc:agt-sales-01",
+      "technical_owner": "руководитель команды sales",
       "servers": [
         {
           "name": "crm",
@@ -18,6 +19,7 @@
       "purpose": "ответы клиентам",
       "capability": "CAP-01",
       "account": "svc:agt-sales-02",
+      "technical_owner": "руководитель команды sales",
       "servers": [
         {
           "name": "claims",
@@ -34,6 +36,7 @@
       "purpose": "сводки для руководства",
       "capability": "CAP-10",
       "account": "user:sales-59",
+      "technical_owner": "руководитель команды sales",
       "servers": [
         {
           "name": "bi",
@@ -50,7 +53,8 @@
       "purpose": "подготовка коммерческих предложений",
       "capability": "CAP-02",
       "account": "svc:agt-sales-04",
-      "owner": "руководитель команды sales",
+      "business_owner": "Директор по продажам",
+      "technical_owner": "руководитель команды sales",
       "servers": [
         {
           "name": "crm",
@@ -67,7 +71,8 @@
       "purpose": "ответы клиентам",
       "capability": "CAP-01",
       "account": "user:sales-32",
-      "owner": "руководитель команды sales",
+      "business_owner": "Руководитель клиентского сервиса",
+      "technical_owner": "руководитель команды sales",
       "servers": [
         {
           "name": "claims",

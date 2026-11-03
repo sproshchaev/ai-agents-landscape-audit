@@ -98,9 +98,12 @@ def audit(repository, agents, accounts):
 
     for key, a in agents.items():
         app = apps.get(key)
-        owner = (app and app["business_owner"]) or a.get("owner")
+        # технический владелец из MCP-конфига бизнес-владельцем не считается
+        owner = (app and app["business_owner"]) or a.get("business_owner")
         accs = [accounts.get(n, UNKNOWN_ACCOUNT) for n in a["accounts"] - {"", None}] or [UNKNOWN_ACCOUNT]
-        direct = [u for u in (urlparse(s["url"]) for s in a["servers"]) if not via_gateway(u, gateway)]
+        # локальный MCP через stdio адреса не имеет и этой проверкой не покрывается
+        direct = [u for u in (urlparse(s.get("url") or "") for s in a["servers"] if "command" not in s)
+                  if not via_gateway(u, gateway)]
         a["errors"] = {
             1: app is None,
             2: not owner,
