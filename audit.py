@@ -86,7 +86,7 @@ def audit(repository, agents, accounts):
     gateway = repository["standards"]["mcp_gateway"].lower()
     border = (AUDIT_DATE - timedelta(days=ZOMBIE_DAYS)).isoformat()
 
-    # возможность зарегистрированного агента берётся из репозитория, а не из MCP-конфига
+    # возможность берётся из записи репозитория, даже если тип у записи неверный
     teams_by_cap = defaultdict(set)
     for key, a in agents.items():
         if key in apps:
@@ -104,13 +104,17 @@ def audit(repository, agents, accounts):
         # локальный MCP через stdio адреса не имеет и этой проверкой не покрывается
         direct = [u for u in (urlparse(s.get("url") or "") for s in a["servers"] if "command" not in s)
                   if not via_gateway(u, gateway)]
+        # нет записи, запись с другим типом (агента не описывает) или заведён как AI-агент
+        a["registration"] = "missing" if app is None else (
+            "ai-agent" if app["type"] == "ai-agent" else "wrong_type")
         a["errors"] = {
-            1: app is None,
+            1: a["registration"] != "ai-agent",
             2: not owner,
             3: any(acc["kind"] != "service" for acc in accs),
             4: bool(direct),
             5: a["capability"] in dup_caps,
-            6: any(acc["enabled"] != "no" for acc in accs) and a["last_call"] < border,
+            # нет вызовов в журнале вовсе — активность неизвестна, это не то же, что «молчит»
+            6: "" < a["last_call"] < border and any(acc["enabled"] != "no" for acc in accs),
         }
         a["direct_connections"] = len(direct)
         # тот же хост шлюза на чужом порту показывается с портом, иначе — системой из репозитория
@@ -137,8 +141,9 @@ def main():
     print(f"  агентов найдено: {total}, команд: {len({a['team'] for a in agents.values()})}")
     print(f"  из MCP-конфигов: {src['mcp']}, только из журнала LLM-шлюза: {src['log']}")
     print()
-    print(f"Ошибка 1. Агента нет в репозитории: {n[1]} из {total}; "
-          f"ещё {total - n[1]} записаны как обычное приложение")
+    reg = Counter(a["registration"] for a in agents.values())
+    print(f"Ошибка 1. Агент не заведён как AI-агент: {n[1]} из {total}; "
+          f"записи нет у {reg['missing']}, записаны с другим типом {reg['wrong_type']}")
     print(f"Ошибка 2. Нет бизнес-владельца: {n[2]} из {total}")
     print(f"Ошибка 3. Работает под учётной записью человека или неизвестной: {n[3]} из {total}")
     direct = [a for a in agents.values() if a["errors"][4]]
@@ -149,7 +154,7 @@ def main():
           f"возможностей {len(dup_caps)}, агентов в них {n[5]}")
     for c, teams in dup_caps.items():
         print(f"    {c} {caps.get(c, 'нет в репозитории')}: {', '.join(teams)}")
-    print(f"Ошибка 6. Не работает больше {ZOMBIE_DAYS} дней, а доступ включён: {n[6]} из {total}")
+    print(f"Ошибка 6. Не работает больше {ZOMBIE_DAYS} дней, а учётка не отключена: {n[6]} из {total}")
     print()
     clean = sum(not any(a["errors"].values()) for a in agents.values())
     print(f"Хотя бы одна ошибка: {total - clean} из {total}, без ошибок: {clean}")

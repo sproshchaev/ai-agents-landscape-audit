@@ -20,14 +20,21 @@ GW = "https://api-gw.corp.local/crm/mcp"
 
 
 def run(servers=None, account="svc:agt-sales-01", log_account=None, last_call="2026-10-30",
-        **fields):
+        app_type=None, **fields):
+    """last_call=None — агента нет в журнале шлюза, app_type — тип его записи в репозитории."""
     mcp = [{"team": "sales", "agents": [{"key": "agt-sales-01", "capability": "CAP-02",
                                          "account": account,
                                          "servers": [{"name": "crm", "url": GW}]
                                          if servers is None else servers, **fields}]}]
-    log = [{"date": last_call, "account": log_account or account, "agent": "agt-sales-01"}]
+    log = [] if last_call is None else [
+        {"date": last_call, "account": log_account or account, "agent": "agt-sales-01"}]
+    repo = REPOSITORY if app_type is None else {**REPOSITORY, "applications": [
+        *REPOSITORY["applications"],
+        {"id": "agt-sales-01", "host": "agt-sales-01.corp.local", "capability": "CAP-02",
+         "business_owner": "Директор по продажам", "type": app_type,
+         "runtime_key": "agt-sales-01"}]}
     agents = discover(mcp, log)
-    audit(REPOSITORY, agents, ACCOUNTS)
+    audit(repo, agents, ACCOUNTS)
     return agents["agt-sales-01"]["errors"]
 
 
@@ -62,6 +69,17 @@ class AuditEdgeCases(unittest.TestCase):
 
     def test_gateway_url_is_not_direct(self):
         self.assertFalse(run()[4])
+
+    def test_agent_registered_as_application_is_error_1(self):
+        errors = run(app_type="application")
+        self.assertTrue(errors[1])
+        self.assertFalse(errors[2])
+
+    def test_agent_registered_as_ai_agent_is_not_error_1(self):
+        self.assertFalse(any(run(app_type="ai-agent").values()))
+
+    def test_agent_without_gateway_calls_is_not_zombie(self):
+        self.assertFalse(run(last_call=None)[6])
 
     def test_stdio_server_is_skipped_not_crash(self):
         self.assertFalse(run(servers=[{"name": "local", "command": "mcp-files"}])[4])
