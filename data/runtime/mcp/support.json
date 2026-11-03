@@ -1,0 +1,82 @@
+{
+  "team": "support",
+  "agents": [
+    {
+      "key": "agt-support-01",
+      "purpose": "ответы клиентам",
+      "capability": "CAP-01",
+      "account": "user:support-30",
+      "servers": [
+        {
+          "name": "claims",
+          "url": "http://claims.corp.local:9000/mcp"
+        },
+        {
+          "name": "contact-center",
+          "url": "https://api-gw.corp.local/contact-center/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-support-03",
+      "purpose": "ответы клиентам",
+      "capability": "CAP-01",
+      "account": "svc:agt-support-03",
+      "servers": [
+        {
+          "name": "contact-center",
+          "url": "https://api-gw.corp.local/contact-center/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-support-04",
+      "purpose": "поиск по базе знаний",
+      "capability": "CAP-11",
+      "account": "svc:agt-support-04",
+      "servers": [
+        {
+          "name": "mail",
+          "url": "http://mail.corp.local:8443/mcp"
+        },
+        {
+          "name": "wiki",
+          "url": "https://api-gw.corp.local/wiki/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-support-05",
+      "purpose": "поиск по базе знаний",
+      "capability": "CAP-11",
+      "account": "user:support-32",
+      "owner": "руководитель команды support",
+      "servers": [
+        {
+          "name": "mail",
+          "url": "http://mail.corp.local:8080/mcp"
+        },
+        {
+          "name": "wiki",
+          "url": "http://wiki.corp.local:8443/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-support-06",
+      "purpose": "ответы клиентам",
+      "capability": "CAP-01",
+      "account": "svc:agt-support-06",
+      "servers": [
+        {
+          "name": "claims",
+          "url": "https://api-gw.corp.local/claims/mcp"
+        },
+        {
+          "name": "contact-center",
+          "url": "https://api-gw.corp.local/contact-center/mcp"
+        }
+      ]
+    }
+  ]
+}

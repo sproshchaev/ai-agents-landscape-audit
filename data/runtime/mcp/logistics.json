@@ -1,0 +1,47 @@
+{
+  "team": "logistics",
+  "agents": [
+    {
+      "key": "agt-logistics-01",
+      "purpose": "планирование отгрузок",
+      "capability": "CAP-06",
+      "account": "user:logistics-11",
+      "owner": "руководитель команды logistics",
+      "servers": [
+        {
+          "name": "fleet",
+          "url": "https://api-gw.corp.local/fleet/mcp"
+        },
+        {
+          "name": "wms",
+          "url": "https://api-gw.corp.local/wms/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-logistics-02",
+      "purpose": "планирование отгрузок",
+      "capability": "CAP-06",
+      "account": "user:logistics-24",
+      "servers": [
+        {
+          "name": "fleet",
+          "url": "https://api-gw.corp.local/fleet/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-logistics-03",
+      "purpose": "планирование отгрузок",
+      "capability": "CAP-06",
+      "account": "user:logistics-20",
+      "owner": "руководитель команды logistics",
+      "servers": [
+        {
+          "name": "tms",
+          "url": "https://api-gw.corp.local/tms/mcp"
+        }
+      ]
+    }
+  ]
+}

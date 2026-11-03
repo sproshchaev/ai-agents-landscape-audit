@@ -1,0 +1,71 @@
+{
+  "team": "hr",
+  "agents": [
+    {
+      "key": "agt-hr-01",
+      "purpose": "кадровые справки",
+      "capability": "CAP-12",
+      "account": "svc:agt-hr-01",
+      "servers": [
+        {
+          "name": "hr-core",
+          "url": "https://api-gw.corp.local/hr-core/mcp"
+        },
+        {
+          "name": "hr-portal",
+          "url": "https://api-gw.corp.local/hr-portal/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-hr-02",
+      "purpose": "кадровые справки",
+      "capability": "CAP-12",
+      "account": "svc:agt-hr-02",
+      "owner": "руководитель команды hr",
+      "servers": [
+        {
+          "name": "hr-core",
+          "url": "https://api-gw.corp.local/hr-core/mcp"
+        },
+        {
+          "name": "hr-portal",
+          "url": "https://api-gw.corp.local/hr-portal/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-hr-03",
+      "purpose": "кадровые справки",
+      "capability": "CAP-12",
+      "account": "user:hr-56",
+      "servers": [
+        {
+          "name": "hr-core",
+          "url": "http://hr-core.corp.local:8080/mcp"
+        },
+        {
+          "name": "hr-portal",
+          "url": "http://hr-portal.corp.local:8080/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-hr-04",
+      "purpose": "отбор резюме",
+      "capability": "CAP-05",
+      "account": "svc:agt-hr-04",
+      "owner": "руководитель команды hr",
+      "servers": [
+        {
+          "name": "ats",
+          "url": "https://api-gw.corp.local/ats/mcp"
+        },
+        {
+          "name": "lms",
+          "url": "https://api-gw.corp.local/lms/mcp"
+        }
+      ]
+    }
+  ]
+}

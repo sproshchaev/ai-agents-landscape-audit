@@ -1,0 +1,38 @@
+{
+  "team": "legal",
+  "agents": [
+    {
+      "key": "agt-legal-01",
+      "purpose": "проверка договоров",
+      "capability": "CAP-08",
+      "account": "svc:agt-legal-01",
+      "servers": [
+        {
+          "name": "contracts",
+          "url": "https://api-gw.corp.local/contracts/mcp"
+        },
+        {
+          "name": "edo",
+          "url": "https://api-gw.corp.local/edo/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-legal-02",
+      "purpose": "проверка договоров",
+      "capability": "CAP-08",
+      "account": "svc:agt-legal-02",
+      "owner": "руководитель команды legal",
+      "servers": [
+        {
+          "name": "contracts",
+          "url": "https://api-gw.corp.local/contracts/mcp"
+        },
+        {
+          "name": "edo",
+          "url": "https://api-gw.corp.local/edo/mcp"
+        }
+      ]
+    }
+  ]
+}

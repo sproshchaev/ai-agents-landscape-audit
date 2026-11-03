@@ -1,0 +1,62 @@
+{
+  "team": "marketing",
+  "agents": [
+    {
+      "key": "agt-marketing-01",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "svc:agt-marketing-01",
+      "servers": [
+        {
+          "name": "bi",
+          "url": "https://api-gw.corp.local/bi/mcp"
+        },
+        {
+          "name": "dwh",
+          "url": "http://dwh.corp.local:9000/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-marketing-02",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "svc:agt-marketing-02",
+      "owner": "руководитель команды marketing",
+      "servers": [
+        {
+          "name": "dwh",
+          "url": "https://api-gw.corp.local/dwh/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-marketing-03",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "user:marketing-61",
+      "servers": [
+        {
+          "name": "bi",
+          "url": "https://api-gw.corp.local/bi/mcp"
+        },
+        {
+          "name": "dwh",
+          "url": "https://api-gw.corp.local/dwh/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-marketing-04",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "svc:agt-marketing-04",
+      "servers": [
+        {
+          "name": "dwh",
+          "url": "https://api-gw.corp.local/dwh/mcp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "team": "finance",
+  "agents": [
+    {
+      "key": "agt-finance-01",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "user:finance-90",
+      "owner": "руководитель команды finance",
+      "servers": [
+        {
+          "name": "bi",
+          "url": "https://api-gw.corp.local/bi/mcp"
+        },
+        {
+          "name": "dwh",
+          "url": "https://api-gw.corp.local/dwh/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-finance-02",
+      "purpose": "сверка счетов",
+      "capability": "CAP-03",
+      "account": "svc:agt-finance-02",
+      "servers": [
+        {
+          "name": "erp-finance",
+          "url": "https://api-gw.corp.local/erp-finance/mcp"
+        },
+        {
+          "name": "payments",
+          "url": "https://api-gw.corp.local/payments/mcp"
+        },
+        {
+          "name": "treasury",
+          "url": "https://api-gw.corp.local/treasury/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-finance-03",
+      "purpose": "сверка счетов",
+      "capability": "CAP-03",
+      "account": "svc:agt-finance-03",
+      "owner": "руководитель команды finance",
+      "servers": [
+        {
+          "name": "erp-finance",
+          "url": "http://erp-finance.corp.local:8443/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-finance-04",
+      "purpose": "сверка счетов",
+      "capability": "CAP-03",
+      "account": "svc:agt-finance-04",
+      "servers": [
+        {
+          "name": "erp-finance",
+          "url": "https://api-gw.corp.local/erp-finance/mcp"
+        },
+        {
+          "name": "payments",
+          "url": "https://api-gw.corp.local/payments/mcp"
+        },
+        {
+          "name": "treasury",
+          "url": "https://api-gw.corp.local/treasury/mcp"
+        }
+      ]
+    }
+  ]
+}

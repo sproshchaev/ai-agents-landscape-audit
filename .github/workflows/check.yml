@@ -1,0 +1,27 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Data is reproducible byte for byte
+        run: |
+          python3 generate.py "$RUNNER_TEMP/data"
+          diff -r data "$RUNNER_TEMP/data"
+
+      - name: Audit output matches expected.txt
+        run: ./run.sh
+
+      - name: Run fails on a changed number
+        run: |
+          sed -i '0,/[0-9]\+/s//999/' expected.txt
+          git diff --quiet expected.txt && { echo "expected.txt was not changed"; exit 1; }
+          if ./run.sh > /dev/null; then
+            echo "run.sh should fail on a changed number"; exit 1
+          fi

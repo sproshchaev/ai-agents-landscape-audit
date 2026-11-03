@@ -1,0 +1,50 @@
+{
+  "team": "procurement",
+  "agents": [
+    {
+      "key": "agt-procurement-01",
+      "purpose": "разбор заявок на закупку",
+      "capability": "CAP-04",
+      "account": "svc:agt-procurement-01",
+      "servers": [
+        {
+          "name": "erp-procurement",
+          "url": "https://api-gw.corp.local/erp-procurement/mcp"
+        },
+        {
+          "name": "supplier-portal",
+          "url": "https://api-gw.corp.local/supplier-portal/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-procurement-02",
+      "purpose": "проверка договоров",
+      "capability": "CAP-08",
+      "account": "svc:agt-procurement-02",
+      "owner": "руководитель команды procurement",
+      "servers": [
+        {
+          "name": "contracts",
+          "url": "https://api-gw.corp.local/contracts/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-procurement-03",
+      "purpose": "проверка договоров",
+      "capability": "CAP-08",
+      "account": "user:procurement-64",
+      "servers": [
+        {
+          "name": "contracts",
+          "url": "https://api-gw.corp.local/contracts/mcp"
+        },
+        {
+          "name": "edo",
+          "url": "https://api-gw.corp.local/edo/mcp"
+        }
+      ]
+    }
+  ]
+}

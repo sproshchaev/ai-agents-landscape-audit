@@ -1,0 +1,561 @@
+{
+  "standards": {
+    "integration_channels": [
+      "api-gateway",
+      "esb",
+      "event-bus"
+    ],
+    "mcp_gateway": "api-gw.corp.local"
+  },
+  "capabilities": [
+    {
+      "id": "CAP-01",
+      "name": "Обработка обращений клиентов"
+    },
+    {
+      "id": "CAP-02",
+      "name": "Продажи и сделки"
+    },
+    {
+      "id": "CAP-03",
+      "name": "Счета и платежи"
+    },
+    {
+      "id": "CAP-04",
+      "name": "Закупки"
+    },
+    {
+      "id": "CAP-05",
+      "name": "Подбор персонала"
+    },
+    {
+      "id": "CAP-06",
+      "name": "Складская логистика"
+    },
+    {
+      "id": "CAP-07",
+      "name": "Маркетинговые кампании"
+    },
+    {
+      "id": "CAP-08",
+      "name": "Договорная работа"
+    },
+    {
+      "id": "CAP-09",
+      "name": "Поддержка ИТ-инфраструктуры"
+    },
+    {
+      "id": "CAP-10",
+      "name": "Отчётность и аналитика"
+    },
+    {
+      "id": "CAP-11",
+      "name": "Управление знаниями"
+    },
+    {
+      "id": "CAP-12",
+      "name": "Кадровое администрирование"
+    }
+  ],
+  "applications": [
+    {
+      "id": "crm",
+      "name": "CRM",
+      "type": "application",
+      "capability": "CAP-02",
+      "business_owner": "Директор по продажам",
+      "host": "crm.corp.local"
+    },
+    {
+      "id": "contact-center",
+      "name": "Контакт-центр",
+      "type": "application",
+      "capability": "CAP-01",
+      "business_owner": "Руководитель клиентского сервиса",
+      "host": "contact-center.corp.local"
+    },
+    {
+      "id": "service-desk",
+      "name": "Service Desk",
+      "type": "application",
+      "capability": "CAP-09",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "service-desk.corp.local"
+    },
+    {
+      "id": "billing",
+      "name": "Биллинг",
+      "type": "application",
+      "capability": "CAP-03",
+      "business_owner": "Финансовый директор",
+      "host": "billing.corp.local"
+    },
+    {
+      "id": "erp-finance",
+      "name": "ERP, финансовый контур",
+      "type": "application",
+      "capability": "CAP-03",
+      "business_owner": "Финансовый директор",
+      "host": "erp-finance.corp.local"
+    },
+    {
+      "id": "erp-procurement",
+      "name": "ERP, закупки",
+      "type": "application",
+      "capability": "CAP-04",
+      "business_owner": "Директор по закупкам",
+      "host": "erp-procurement.corp.local"
+    },
+    {
+      "id": "supplier-portal",
+      "name": "Портал поставщиков",
+      "type": "application",
+      "capability": "CAP-04",
+      "business_owner": "Директор по закупкам",
+      "host": "supplier-portal.corp.local"
+    },
+    {
+      "id": "wms",
+      "name": "Склад WMS",
+      "type": "application",
+      "capability": "CAP-06",
+      "business_owner": "Директор по логистике",
+      "host": "wms.corp.local"
+    },
+    {
+      "id": "tms",
+      "name": "Транспорт TMS",
+      "type": "application",
+      "capability": "CAP-06",
+      "business_owner": "Директор по логистике",
+      "host": "tms.corp.local"
+    },
+    {
+      "id": "ats",
+      "name": "Система подбора персонала",
+      "type": "application",
+      "capability": "CAP-05",
+      "business_owner": "Директор по персоналу",
+      "host": "ats.corp.local"
+    },
+    {
+      "id": "hr-core",
+      "name": "Кадровая система",
+      "type": "application",
+      "capability": "CAP-12",
+      "business_owner": "Директор по персоналу",
+      "host": "hr-core.corp.local"
+    },
+    {
+      "id": "hr-portal",
+      "name": "HR-портал",
+      "type": "application",
+      "capability": "CAP-12",
+      "business_owner": "Директор по персоналу",
+      "host": "hr-portal.corp.local"
+    },
+    {
+      "id": "cdp",
+      "name": "Платформа клиентских данных",
+      "type": "application",
+      "capability": "CAP-07",
+      "business_owner": "Директор по маркетингу",
+      "host": "cdp.corp.local"
+    },
+    {
+      "id": "email-campaigns",
+      "name": "Рассылки",
+      "type": "application",
+      "capability": "CAP-07",
+      "business_owner": "Директор по маркетингу",
+      "host": "email-campaigns.corp.local"
+    },
+    {
+      "id": "cms",
+      "name": "Сайт и CMS",
+      "type": "application",
+      "capability": "CAP-07",
+      "business_owner": "Директор по маркетингу",
+      "host": "cms.corp.local"
+    },
+    {
+      "id": "contracts",
+      "name": "Договорная система",
+      "type": "application",
+      "capability": "CAP-08",
+      "business_owner": "Директор по правовым вопросам",
+      "host": "contracts.corp.local"
+    },
+    {
+      "id": "edo",
+      "name": "Электронный документооборот",
+      "type": "application",
+      "capability": "CAP-08",
+      "business_owner": "Директор по правовым вопросам",
+      "host": "edo.corp.local"
+    },
+    {
+      "id": "dwh",
+      "name": "Хранилище данных",
+      "type": "application",
+      "capability": "CAP-10",
+      "business_owner": "Директор по данным",
+      "host": "dwh.corp.local"
+    },
+    {
+      "id": "bi",
+      "name": "BI-отчётность",
+      "type": "application",
+      "capability": "CAP-10",
+      "business_owner": "Директор по данным",
+      "host": "bi.corp.local"
+    },
+    {
+      "id": "wiki",
+      "name": "База знаний",
+      "type": "application",
+      "capability": "CAP-11",
+      "business_owner": "Руководитель офиса цифровой трансформации",
+      "host": "wiki.corp.local"
+    },
+    {
+      "id": "monitoring",
+      "name": "Мониторинг",
+      "type": "application",
+      "capability": "CAP-09",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "monitoring.corp.local"
+    },
+    {
+      "id": "cmdb",
+      "name": "CMDB",
+      "type": "application",
+      "capability": "CAP-09",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "cmdb.corp.local"
+    },
+    {
+      "id": "iam",
+      "name": "Управление доступом",
+      "type": "application",
+      "capability": "CAP-09",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "iam.corp.local"
+    },
+    {
+      "id": "mail",
+      "name": "Корпоративная почта",
+      "type": "application",
+      "capability": "CAP-11",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "mail.corp.local"
+    },
+    {
+      "id": "pricing",
+      "name": "Ценообразование",
+      "type": "application",
+      "capability": "CAP-02",
+      "business_owner": "Директор по продажам",
+      "host": "pricing.corp.local"
+    },
+    {
+      "id": "loyalty",
+      "name": "Программа лояльности",
+      "type": "application",
+      "capability": "CAP-07",
+      "business_owner": "Директор по маркетингу",
+      "host": "loyalty.corp.local"
+    },
+    {
+      "id": "payments",
+      "name": "Платёжный шлюз",
+      "type": "application",
+      "capability": "CAP-03",
+      "business_owner": "Финансовый директор",
+      "host": "payments.corp.local"
+    },
+    {
+      "id": "treasury",
+      "name": "Казначейство",
+      "type": "application",
+      "capability": "CAP-03",
+      "business_owner": "Финансовый директор",
+      "host": "treasury.corp.local"
+    },
+    {
+      "id": "lms",
+      "name": "Обучение сотрудников",
+      "type": "application",
+      "capability": "CAP-05",
+      "business_owner": "Директор по персоналу",
+      "host": "lms.corp.local"
+    },
+    {
+      "id": "claims",
+      "name": "Претензии и возвраты",
+      "type": "application",
+      "capability": "CAP-01",
+      "business_owner": "Руководитель клиентского сервиса",
+      "host": "claims.corp.local"
+    },
+    {
+      "id": "tender",
+      "name": "Тендерная площадка",
+      "type": "application",
+      "capability": "CAP-04",
+      "business_owner": "Директор по закупкам",
+      "host": "tender.corp.local"
+    },
+    {
+      "id": "fleet",
+      "name": "Автопарк",
+      "type": "application",
+      "capability": "CAP-06",
+      "business_owner": "Директор по логистике",
+      "host": "fleet.corp.local"
+    },
+    {
+      "id": "agt-support-01",
+      "name": "Бот первой линии поддержки",
+      "type": "application",
+      "capability": "CAP-01",
+      "business_owner": "Руководитель клиентского сервиса",
+      "host": "agt-support-01.corp.local",
+      "runtime_key": "agt-support-01"
+    },
+    {
+      "id": "agt-sales-01",
+      "name": "Помощник менеджера по продажам",
+      "type": "application",
+      "capability": "CAP-02",
+      "business_owner": "Директор по продажам",
+      "host": "agt-sales-01.corp.local",
+      "runtime_key": "agt-sales-01"
+    },
+    {
+      "id": "agt-hr-01",
+      "name": "Чат-бот кадровых вопросов",
+      "type": "application",
+      "capability": "CAP-12",
+      "business_owner": null,
+      "host": "agt-hr-01.corp.local",
+      "runtime_key": "agt-hr-01"
+    },
+    {
+      "id": "agt-itops-01",
+      "name": "Ассистент дежурного инженера",
+      "type": "application",
+      "capability": "CAP-09",
+      "business_owner": "Руководитель ИТ-поддержки",
+      "host": "agt-itops-01.corp.local",
+      "runtime_key": "agt-itops-01"
+    }
+  ],
+  "integrations": [
+    {
+      "from": "crm",
+      "to": "treasury",
+      "channel": "esb"
+    },
+    {
+      "from": "contact-center",
+      "to": "treasury",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "service-desk",
+      "to": "dwh",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "billing",
+      "to": "ats",
+      "channel": "esb"
+    },
+    {
+      "from": "erp-finance",
+      "to": "fleet",
+      "channel": "event-bus"
+    },
+    {
+      "from": "erp-procurement",
+      "to": "wiki",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "erp-procurement",
+      "to": "mail",
+      "channel": "event-bus"
+    },
+    {
+      "from": "supplier-portal",
+      "to": "dwh",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "wms",
+      "to": "pricing",
+      "channel": "event-bus"
+    },
+    {
+      "from": "tms",
+      "to": "mail",
+      "channel": "esb"
+    },
+    {
+      "from": "ats",
+      "to": "claims",
+      "channel": "event-bus"
+    },
+    {
+      "from": "hr-core",
+      "to": "tms",
+      "channel": "esb"
+    },
+    {
+      "from": "hr-portal",
+      "to": "loyalty",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "cdp",
+      "to": "iam",
+      "channel": "event-bus"
+    },
+    {
+      "from": "email-campaigns",
+      "to": "billing",
+      "channel": "event-bus"
+    },
+    {
+      "from": "cms",
+      "to": "loyalty",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "cms",
+      "to": "edo",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "contracts",
+      "to": "tms",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "contracts",
+      "to": "loyalty",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "edo",
+      "to": "wiki",
+      "channel": "esb"
+    },
+    {
+      "from": "dwh",
+      "to": "billing",
+      "channel": "esb"
+    },
+    {
+      "from": "dwh",
+      "to": "cdp",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "bi",
+      "to": "supplier-portal",
+      "channel": "event-bus"
+    },
+    {
+      "from": "bi",
+      "to": "cdp",
+      "channel": "esb"
+    },
+    {
+      "from": "wiki",
+      "to": "iam",
+      "channel": "event-bus"
+    },
+    {
+      "from": "monitoring",
+      "to": "claims",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "monitoring",
+      "to": "loyalty",
+      "channel": "esb"
+    },
+    {
+      "from": "cmdb",
+      "to": "wms",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "cmdb",
+      "to": "erp-finance",
+      "channel": "esb"
+    },
+    {
+      "from": "iam",
+      "to": "fleet",
+      "channel": "event-bus"
+    },
+    {
+      "from": "iam",
+      "to": "cdp",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "mail",
+      "to": "iam",
+      "channel": "esb"
+    },
+    {
+      "from": "pricing",
+      "to": "fleet",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "loyalty",
+      "to": "tender",
+      "channel": "event-bus"
+    },
+    {
+      "from": "payments",
+      "to": "tender",
+      "channel": "esb"
+    },
+    {
+      "from": "payments",
+      "to": "email-campaigns",
+      "channel": "esb"
+    },
+    {
+      "from": "treasury",
+      "to": "wms",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "lms",
+      "to": "treasury",
+      "channel": "esb"
+    },
+    {
+      "from": "claims",
+      "to": "billing",
+      "channel": "api-gateway"
+    },
+    {
+      "from": "tender",
+      "to": "supplier-portal",
+      "channel": "event-bus"
+    },
+    {
+      "from": "fleet",
+      "to": "dwh",
+      "channel": "esb"
+    }
+  ]
+}

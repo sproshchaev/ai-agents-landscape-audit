@@ -1,0 +1,50 @@
+{
+  "team": "itops",
+  "agents": [
+    {
+      "key": "agt-itops-01",
+      "purpose": "разбор инцидентов",
+      "capability": "CAP-09",
+      "account": "user:itops-76",
+      "servers": [
+        {
+          "name": "cmdb",
+          "url": "https://api-gw.corp.local/cmdb/mcp"
+        },
+        {
+          "name": "iam",
+          "url": "https://api-gw.corp.local/iam/mcp"
+        },
+        {
+          "name": "service-desk",
+          "url": "https://api-gw.corp.local/service-desk/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-itops-02",
+      "purpose": "поиск по базе знаний",
+      "capability": "CAP-11",
+      "account": "user:itops-23",
+      "owner": "руководитель команды itops",
+      "servers": [
+        {
+          "name": "wiki",
+          "url": "https://api-gw.corp.local/wiki/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-itops-03",
+      "purpose": "поиск по базе знаний",
+      "capability": "CAP-11",
+      "account": "user:itops-54",
+      "servers": [
+        {
+          "name": "wiki",
+          "url": "http://wiki.corp.local:8080/mcp"
+        }
+      ]
+    }
+  ]
+}

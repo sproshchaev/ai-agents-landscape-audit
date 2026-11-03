@@ -1,0 +1,83 @@
+{
+  "team": "sales",
+  "agents": [
+    {
+      "key": "agt-sales-01",
+      "purpose": "подготовка коммерческих предложений",
+      "capability": "CAP-02",
+      "account": "svc:agt-sales-01",
+      "servers": [
+        {
+          "name": "crm",
+          "url": "https://api-gw.corp.local/crm/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-sales-02",
+      "purpose": "ответы клиентам",
+      "capability": "CAP-01",
+      "account": "svc:agt-sales-02",
+      "servers": [
+        {
+          "name": "claims",
+          "url": "https://api-gw.corp.local/claims/mcp"
+        },
+        {
+          "name": "contact-center",
+          "url": "https://api-gw.corp.local/contact-center/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-sales-03",
+      "purpose": "сводки для руководства",
+      "capability": "CAP-10",
+      "account": "user:sales-59",
+      "servers": [
+        {
+          "name": "bi",
+          "url": "https://api-gw.corp.local/bi/mcp"
+        },
+        {
+          "name": "dwh",
+          "url": "https://api-gw.corp.local/dwh/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-sales-04",
+      "purpose": "подготовка коммерческих предложений",
+      "capability": "CAP-02",
+      "account": "svc:agt-sales-04",
+      "owner": "руководитель команды sales",
+      "servers": [
+        {
+          "name": "crm",
+          "url": "https://api-gw.corp.local/crm/mcp"
+        },
+        {
+          "name": "pricing",
+          "url": "https://api-gw.corp.local/pricing/mcp"
+        }
+      ]
+    },
+    {
+      "key": "agt-sales-05",
+      "purpose": "ответы клиентам",
+      "capability": "CAP-01",
+      "account": "user:sales-32",
+      "owner": "руководитель команды sales",
+      "servers": [
+        {
+          "name": "claims",
+          "url": "https://api-gw.corp.local/claims/mcp"
+        },
+        {
+          "name": "contact-center",
+          "url": "https://api-gw.corp.local/contact-center/mcp"
+        }
+      ]
+    }
+  ]
+}
