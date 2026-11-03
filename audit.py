@@ -20,6 +20,9 @@ from generate import AUDIT_DATE
 
 DATA = Path(__file__).parent / "data"
 ZOMBIE_DAYS = 30
+GATEWAY_PORT = 443
+# учётка, которой нет в выгрузке: не сервисная и не отключённая, отсутствие данных — не соответствие
+UNKNOWN_ACCOUNT = {"kind": "unknown", "enabled": "unknown"}
 
 
 def load():
@@ -51,23 +54,36 @@ def discover(mcp, log):
     agents = {}
     for cfg in mcp:
         for a in cfg["agents"]:
-            agents[a["key"]] = {**a, "team": cfg["team"], "source": "mcp", "last_call": None}
+            declared = {k: v for k, v in a.items() if k != "account"}
+            agents[a["key"]] = {**declared, "team": cfg["team"], "source": "mcp", "last_call": "",
+                                "accounts": {a["account"]}}
     for r in log:
         a = agents.get(r["agent"])
         if a is None:
             # в журнале шлюза команды нет, она берётся из ключа agt-<команда>-NN
             parts = r["agent"].split("-")
             a = agents[r["agent"]] = {"key": r["agent"], "team": parts[1] if len(parts) > 2 else "?",
-                                      "account": r["account"], "capability": None, "servers": [],
-                                      "source": "log", "last_call": None}
-        a["last_call"] = max(a["last_call"] or "", r["date"])
+                                      "capability": None, "servers": [], "source": "log",
+                                      "last_call": "", "accounts": set()}
+        # учётка из журнала может отличаться от заявленной в MCP-конфиге, сверяются все
+        a["accounts"].add(r["account"])
+        a["last_call"] = max(a["last_call"], r["date"])
     return agents
+
+
+def via_gateway(url, gateway):
+    """Шлюз определяется схемой, хостом и портом: тот же хост на другом порту — другой сервис."""
+    try:
+        port = url.port or GATEWAY_PORT
+    except ValueError:
+        return False
+    return url.scheme == "https" and url.hostname == gateway and port == GATEWAY_PORT
 
 
 def audit(repository, agents, accounts):
     apps = {a.get("runtime_key"): a for a in repository["applications"] if a.get("runtime_key")}
     hosts = {a["host"]: a["id"] for a in repository["applications"]}
-    gateway = repository["standards"]["mcp_gateway"]
+    gateway = repository["standards"]["mcp_gateway"].lower()
     border = (AUDIT_DATE - timedelta(days=ZOMBIE_DAYS)).isoformat()
 
     # возможность зарегистрированного агента берётся из репозитория, а не из MCP-конфига
@@ -77,24 +93,25 @@ def audit(repository, agents, accounts):
             a["capability"] = apps[key]["capability"]
         if a["capability"]:
             teams_by_cap[a["capability"]].add(a["team"])
-    # дубль: одну бизнес-возможность закрывают агенты двух и более команд
+    # возможное пересечение: одну бизнес-возможность закрывают агенты двух и более команд
     dup_caps = {c: sorted(t) for c, t in sorted(teams_by_cap.items()) if len(t) > 1}
 
     for key, a in agents.items():
         app = apps.get(key)
         owner = (app and app["business_owner"]) or a.get("owner")
-        acc = accounts.get(a["account"], {})
-        direct = [h for h in (urlparse(s["url"]).hostname for s in a["servers"]) if h != gateway]
+        accs = [accounts.get(n, UNKNOWN_ACCOUNT) for n in a["accounts"] - {"", None}] or [UNKNOWN_ACCOUNT]
+        direct = [u for u in (urlparse(s["url"]) for s in a["servers"]) if not via_gateway(u, gateway)]
         a["errors"] = {
             1: app is None,
             2: not owner,
-            3: acc.get("kind") == "human",
+            3: any(acc["kind"] != "service" for acc in accs),
             4: bool(direct),
             5: a["capability"] in dup_caps,
-            6: acc.get("enabled") == "yes" and (a["last_call"] or "") < border,
+            6: any(acc["enabled"] != "no" for acc in accs) and a["last_call"] < border,
         }
         a["direct_connections"] = len(direct)
-        a["direct_targets"] = sorted({hosts.get(h, h) for h in direct})
+        # тот же хост шлюза на чужом порту показывается с портом, иначе — системой из репозитория
+        a["direct_targets"] = sorted({hosts.get(u.hostname, u.netloc) for u in direct})
     return dup_caps
 
 
@@ -120,12 +137,12 @@ def main():
     print(f"Ошибка 1. Агента нет в репозитории: {n[1]} из {total}; "
           f"ещё {total - n[1]} записаны как обычное приложение")
     print(f"Ошибка 2. Нет бизнес-владельца: {n[2]} из {total}")
-    print(f"Ошибка 3. Работает под учётной записью человека: {n[3]} из {total}")
+    print(f"Ошибка 3. Работает под учётной записью человека или неизвестной: {n[3]} из {total}")
     direct = [a for a in agents.values() if a["errors"][4]]
     targets = sorted({t for a in direct for t in a["direct_targets"]})
     print(f"Ошибка 4. MCP напрямую, мимо шлюза: {len(direct)} из {total}, "
           f"{sum(a['direct_connections'] for a in direct)} подключений к {len(targets)} системам")
-    print(f"Ошибка 5. Одну возможность закрывают агенты разных команд: "
+    print(f"Ошибка 5. Возможное пересечение, одну возможность закрывают агенты разных команд: "
           f"возможностей {len(dup_caps)}, агентов в них {n[5]}")
     for c, teams in dup_caps.items():
         print(f"    {c} {caps.get(c, 'нет в репозитории')}: {', '.join(teams)}")

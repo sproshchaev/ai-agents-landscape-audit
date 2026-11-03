@@ -15,6 +15,9 @@ jobs:
           python3 generate.py "$RUNNER_TEMP/data"
           diff -r data "$RUNNER_TEMP/data"
 
+      - name: Edge cases
+        run: python3 -m unittest -v test_audit.py
+
       - name: Audit output matches expected.txt
         run: ./run.sh
 
